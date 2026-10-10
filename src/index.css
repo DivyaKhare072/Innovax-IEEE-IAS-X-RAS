@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-brand-blue: #006699;
+  --color-brand-cyan: #00f0ff;
+  --color-brand-purple: #8b5cf6;
+  --color-brand-indigo: #6366f1;
+  --color-dark-bg: #04060d;
+  --color-dark-surface: #090e1d;
+  --color-dark-card: #0f172a;
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #04060d;
+  color: #f1f5f9;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Gallery Play Signature Aesthetics & Utilities
+   Ref: https://gallery-play.be/
+   ========================================================================== */
+
+/* Frosted glass buttons with 20px blur */
+.gp-button {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Gallery Play Thermal Palette Variables */
+:root {
+  --gp-color-1: #213ded;
+  --gp-color-2: #00acd7;
+  --gp-color-3: #00b181;
+  --gp-color-4: #e6c82a;
+  --gp-color-5: #ff3700;
+}
+
+/* Infinite Ticker Keyframes */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 35s linear infinite;
+}
+
+/* Subtle futuristic tech grid background */
+.tech-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(18, 28, 51, 0.85);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Minimal Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #04060d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00acd7;
+}
+
+/* ==========================================================================
+   Glitch Fade Animations
+   ========================================================================== */
+
+@keyframes glitch-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) skewX(-8deg);
+    filter: blur(8px);
+    text-shadow: 4px 0 #00acd7, -4px 0 #ff3700;
+  }
+  20% {
+    opacity: 0.5;
+    transform: translateY(-4px) skewX(6deg);
+    filter: blur(4px);
+    text-shadow: -4px 0 #00acd7, 4px 0 #ff3700;
+    clip-path: polygon(0 15%, 100% 15%, 100% 40%, 0 40%);
+  }
+  40% {
+    opacity: 0.8;
+    transform: translateY(3px) skewX(-4deg);
+    filter: blur(2px);
+    text-shadow: 3px 0 #00f0ff, -3px 0 #ff0055;
+    clip-path: polygon(0 45%, 100% 45%, 100% 80%, 0 80%);
+  }
+  60% {
+    opacity: 0.95;
+    transform: translateY(-2px) skewX(2deg);
+    filter: blur(1px);
+    text-shadow: -2px 0 #00acd7, 2px 0 #ff3700;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  80% {
+    opacity: 0.98;
+    transform: translateY(1px) skewX(-1deg);
+    filter: blur(0);
+    text-shadow: 1px 0 #00acd7, -1px 0 #ff3700;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) skewX(0);
+    filter: blur(0);
+    text-shadow: none;
+    clip-path: none;
+  }
+}
+
+@keyframes glitch-hover-pulse {
+  0% {
+    text-shadow: 2px 0 #00acd7, -2px 0 #ff3700;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: -3px 0 #00acd7, 3px 0 #ff3700;
+    transform: translate(-2px, 1px) skewX(-2deg);
+  }
+  40% {
+    text-shadow: 3px 0 #00f0ff, -3px 0 #ff0055;
+    transform: translate(2px, -1px) skewX(2deg);
+  }
+  60% {
+    text-shadow: -2px 0 #00acd7, 2px 0 #ff3700;
+    transform: translate(-1px, 2px);
+  }
+  80% {
+    text-shadow: 2px 0 #00acd7, -2px 0 #ff3700;
+    transform: translate(1px, -1px);
+  }
+  100% {
+    text-shadow: none;
+    transform: translate(0);
+  }
+}
+
+.glitch-fade-active {
+  animation: glitch-fade-in 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.glitch-text-hover:hover {
+  animation: glitch-hover-pulse 0.45s steps(2, start) infinite;
+  display: inline-block;
+}
+
+.cyber-scanline {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 172, 215, 0.04) 51%,
+    transparent 52%
+  );
+  background-size: 100% 4px;
+}
+
